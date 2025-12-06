@@ -22,7 +22,7 @@ setup(
     install_requires=[
         "selenium",
         "yt-dlp",
-        "requests"
+        "requests",
         "webdriver-manager"
     ],
 )
