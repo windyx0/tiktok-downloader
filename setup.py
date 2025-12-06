@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="tiktok-downloader-hd",
-    version="0.0a3",
+    version="0.0a4",
     author="Windyx",
     author_email="windyxeditor@gmail.com",
     description="A Selenium-based HD TikTok video downloader using SnapTik",
@@ -26,3 +26,4 @@ setup(
         "webdriver-manager"
     ],
 )
+
