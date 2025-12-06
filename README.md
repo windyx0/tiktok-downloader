@@ -4,12 +4,10 @@ A robust, Selenium-based library for downloading HD TikTok videos without waterm
 
 ## Installation
 
-Clone the repository.
-
-Install dependencies:
+Install library:
 
 ```
-pip install -r requirements.txt
+pip install tiktok-downloader-hd
 ```
 
 ## Requirements
@@ -72,3 +70,4 @@ dl.close()
 ## Disclaimer
 
 This software is for educational purposes only. Users are responsible for complying with TikTok and SnapTik terms of service.
+
