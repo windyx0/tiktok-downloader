@@ -1,64 +1,74 @@
-TikTok Downloader HD
+# TikTok Downloader HD
 
-A robust, Selenium-based library for downloading HD TikTok videos without watermarks using the SnapTik service.
+A robust, Selenium-based library for downloading HD TikTok videos without watermarks using the SnapTik service. Uses spatial targeting to bypass standard scraping protections.
 
-Features
+## Installation
 
-HD Quality: Uses advanced browser automation to trigger HD download buttons.
-
-Bulk Download: Fetches video links from user profiles.
-
-Resilient: Handles ads, popups, and connection timeouts.
-
-Cookies Support: Allows using a Netscape cookie file for authenticated scraping.
-
-Installation
-
-Clone the repository or download the package.
+Clone the repository.
 
 Install dependencies:
 
+```
 pip install -r requirements.txt
+```
 
-
-Usage
-
-Basic Example
-
-from tiktok_downloader import TikTokDownloader
-
-# Initialize
-downloader = TikTokDownloader(
-    download_dir="my_videos",
-    cookies_path="cookies.txt",
-    headless=False  # Set to True to run in background
-)
-
-# Download single video
-url = "[https://www.tiktok.com/@user/video/1234567890](https://www.tiktok.com/@user/video/1234567890)"
-downloader.download(url, filename_prefix="cool_video")
-
-# Close driver
-downloader.close()
-
-
-Bulk Download from Channel
-
-channel_url = "[https://www.tiktok.com/@realizeautomotive](https://www.tiktok.com/@realizeautomotive)"
-links = downloader.get_user_videos(channel_url, limit=5)
-
-for i, link in enumerate(links):
-    downloader.download(link, filename_prefix=f"video_{i}")
-
-
-Requirements
+## Requirements
 
 Python 3.6+
 
 Google Chrome browser installed
 
-cookies.txt (optional, but recommended for bulk scraping)
+cookies.txt (Netscape format) - Recommended for fetching user profiles without login blocks.
 
-Disclaimer
+## Usage
 
-This tool is for educational purposes only. Respect the copyright and terms of service of TikTok and SnapTik.
+Single Video Download
+
+```
+from tiktok_downloader import TikTokDownloader
+```
+
+## Initialize downloader
+
+```
+dl = TikTokDownloader(
+    download_dir="my_videos",
+    cookies_path="cookies.txt", 
+    headless=False 
+)
+```
+
+## Download
+
+```
+dl.download("[https://www.tiktok.com/@user/video/1234567890](https://www.tiktok.com/@user/video/1234567890)", filename_prefix="video_1")
+```
+
+## Clean up
+
+```
+dl.close()
+```
+
+## Bulk Channel Download
+```
+from tiktok_downloader import TikTokDownloader
+import re
+
+dl = TikTokDownloader(download_dir="channel_dump", cookies_path="cookies.txt")
+
+channel_url = "[https://www.tiktok.com/@realizeautomotive](https://www.tiktok.com/@realizeautomotive)"
+links = dl.get_user_videos(channel_url, limit=10)
+
+for i, link in enumerate(links):
+    # Extract Video ID for filename
+    vid_id = re.findall(r'/video/(\d+)', link)[0]
+    dl.download(link, filename_prefix=vid_id)
+
+dl.close()
+```
+
+
+## Disclaimer
+
+This software is for educational purposes only. Users are responsible for complying with TikTok and SnapTik terms of service.
