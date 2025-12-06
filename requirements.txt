@@ -1,0 +1,4 @@
+selenium
+requests
+yt-dlp
+webdriver-manager
